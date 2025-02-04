@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>アドバンス様コ Project</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%);
+            font-family: "Noto Sans JP", sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 1;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            color: #ffd7e6;
+            font-size: 1.2rem;
+        }
+
+        .sakura {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ffd7e6;
+            border-radius: 50% 0 50% 50%;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translate(0, -10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(20vw, 100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>アドバンス様コ</h1>
+        <p class="subtitle">We are developing アドバンス様コ project</p>
+    </div>
+
+    <script>
+        function createSakura() {
+            const sakura = document.createElement('div');
+            sakura.className = 'sakura';
+            
+            // Random starting position
+            sakura.style.left = Math.random() * 100 + 'vw';
+            
+            // Random size
+            const size = Math.random() * 15 + 10;
+            sakura.style.width = size + 'px';
+            sakura.style.height = size + 'px';
+            
+            // Random animation duration
+            const animationDuration = Math.random() * 3 + 4;
+            sakura.style.animation = `fall ${animationDuration}s linear infinite`;
+            
+            // Random color variation
+            const hue = Math.random() * 20 + 350;
+            const lightness = Math.random() * 20 + 80;
+            sakura.style.background = `hsl(${hue}, 100%, ${lightness}%)`;
+            
+            document.body.appendChild(sakura);
+            
+            // Remove petal after animation
+            setTimeout(() => {
+                sakura.remove();
+            }, animationDuration * 1000);
+        }
+
+        // Create new petals periodically
+        setInterval(createSakura, 300);
+
+        // Initial petals
+        for(let i = 0; i < 10; i++) {
+            setTimeout(createSakura, Math.random() * 1000);
+        }
+    </script>
+</body>
+</html>
